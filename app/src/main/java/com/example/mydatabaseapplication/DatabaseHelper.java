@@ -15,7 +15,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.myContext = context;
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query = "CREATE TABLE Books" +
@@ -28,7 +27,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        String query = "DROP TABLE IF EXISTS Books";
+        sqLiteDatabase.execSQL(query);
+        onCreate(sqLiteDatabase);
     }
 
 }
