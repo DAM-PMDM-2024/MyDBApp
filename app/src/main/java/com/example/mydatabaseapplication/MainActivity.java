@@ -36,7 +36,5 @@ public class MainActivity extends AppCompatActivity {
         //Getting all the books
         ArrayList<Book> allBooks = dbHelper.getBooks();
 
-        int i = 0;
-
     }
 }
