@@ -1,6 +1,8 @@
 package com.example.mydatabaseapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
 
     FloatingActionButton addNewBookButton;
+
+    RecyclerView recyclerView;
+
+    CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Getting all the books
         ArrayList<Book> allBooks = dbHelper.getBooks();
+
+        recyclerView = findViewById(R.id.recyclerView);
+        customAdapter = new CustomAdapter(MainActivity.this,allBooks);
+
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
 
     }
 }

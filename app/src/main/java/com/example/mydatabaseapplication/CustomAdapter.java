@@ -36,7 +36,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyBookView
         holder.bookTitle.setText(String.valueOf(books.get(position).get_title()));
         holder.bookAuthor.setText(String.valueOf(books.get(position).get_author()));
         holder.bookPages.setText(String.valueOf(books.get(position).get_pages()));
-
     }
 
     @Override
