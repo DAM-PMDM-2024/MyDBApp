@@ -92,8 +92,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  allBooks;
     }
 
+    //DELETE
+    public void deleteBook(String bookDBID) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        int result = database.delete(TABLE_NAME,"id = ?", new String[]{bookDBID});
+        if(result != 0){
+            //Borrado
+            Toast.makeText(myContext,"Book deleted",Toast.LENGTH_LONG).show();
+        }
+        else{
+            //No borrado
+            Toast.makeText(myContext,"Error on deleting book",Toast.LENGTH_LONG).show();
+        }
+    }
+
     //UPDATE
 
-    //DELETE
 
 }

@@ -32,10 +32,23 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyBookView
 
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyBookView holder, int position) {
-        holder.bookId.setText(String.valueOf(position));
+        holder.bookId.setText(String.valueOf(position+1));
         holder.bookTitle.setText(String.valueOf(books.get(position).get_title()));
         holder.bookAuthor.setText(String.valueOf(books.get(position).get_author()));
         holder.bookPages.setText(String.valueOf(books.get(position).get_pages()));
+        holder.databaseID.setText(String.valueOf(books.get(position).get_id()));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UpdateActivity.class);
+                //Pasamos los datos a la pantalla
+                intent.putExtra("author",String.valueOf(holder.bookAuthor.getText()));
+                intent.putExtra("title",String.valueOf(holder.bookTitle.getText()));
+                intent.putExtra("pages",String.valueOf(holder.bookPages.getText()));
+                intent.putExtra("id",String.valueOf(holder.databaseID.getText()));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -49,6 +62,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyBookView
         TextView bookTitle;
         TextView bookAuthor;
         TextView bookPages;
+        TextView databaseID;
 
         public MyBookView(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +71,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyBookView
             bookAuthor = itemView.findViewById(R.id.bookAuthor);
             bookTitle = itemView.findViewById(R.id.bookTitle);
             bookPages = itemView.findViewById(R.id.bookPages);
+            databaseID = itemView.findViewById(R.id.databaseId);
         }
     }
 }
