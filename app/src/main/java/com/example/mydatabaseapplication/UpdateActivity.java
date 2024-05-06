@@ -57,7 +57,10 @@ public class UpdateActivity extends AppCompatActivity {
         updateBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String newTitle = bookTitleField.getText().toString().trim();
+                String newAuthor = bookAuthorField.getText().toString().trim();
+                int newPages = Integer.valueOf(bookPagesField.getText().toString().trim());
+                myDBHelper.updateBook(newTitle, newAuthor, newPages, bookDBID);
             }
         });
 

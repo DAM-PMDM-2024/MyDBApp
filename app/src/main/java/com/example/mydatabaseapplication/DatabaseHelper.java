@@ -106,6 +106,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updateBook(String newTitle, String newAuthor, int newPages, String bookDBID) {
+        //Obtengo la base de datos en modo escritura
+        SQLiteDatabase database = this.getWritableDatabase();
+        //ContentValues
+        ContentValues contentValues = new ContentValues();
+        //Paso los valores nuevos al content values
+        contentValues.put("title", newTitle);
+        contentValues.put("author", newAuthor);
+        contentValues.put("pages", newPages);
+
+        //Actualizo
+        int updateResult = database.update(TABLE_NAME,contentValues,"id = ?",new String[]{bookDBID});
+
+        if(updateResult == -1){
+            Toast.makeText(myContext,"Error on updating book",Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(myContext,"Book updated",Toast.LENGTH_LONG).show();
+        }
+    }
+
     //UPDATE
 
 
